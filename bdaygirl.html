@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>For You ❤️</title>
+  <style>
+  body{
+    margin:0;
+    font-family: "Segoe UI", sans-serif;
+    background:#0b0f1d;
+    color:white;
+    display:flex;
+    justify-content:center;
+    padding:50px 20px;
+    overflow-x:hidden;
+  }
+
+  .container{
+    max-width:1100px;
+    width:100%;
+    text-align:center;
+    background:#131834;
+    padding:35px 20px;
+    border-radius:20px;
+    box-shadow:0 0 35px rgba(255, 100, 180, 0.25);
+  }
+
+  /* side-by-side layout */
+.content-box {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;          /* mobile-friendly */
+}
+
+.text-box {
+  flex: 1;
+  min-width: 260px;
+}
+
+  h1{
+    font-size:38px;
+    margin-bottom:15px;
+    color:#ff8fcf;
+    text-shadow:0 0 8px #ff4fa8;
+  }
+
+  p{
+    font-size:19px;
+    line-height:1.6;
+    color:#e0e5ff;
+    margin-bottom:30px;
+  }
+
+  /* slideshow box */
+#slideshow{
+  position:relative;
+  width:100%;
+  max-width:550px;         /* limit width */
+  aspect-ratio: 3 / 4;     /* portrait style ratio – perfect for photos */
+  overflow:hidden;
+  border-radius:18px;
+  background:#111;
+  margin:0 auto;
+  box-shadow:0 0 25px rgba(255, 100, 180, 0.35);
+}
+
+/* slideshow images */
+#slideshow img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;         /* keeps image looking natural */
+  object-position:center;   /* centers subject */
+  opacity:0;
+  transition:opacity 1.4s ease-in-out;
+  filter:brightness(0.92);
+}
+
+#slideshow img.active{
+  opacity:1;
+}
+
+
+  /* floating emojis */
+  .emoji{
+    position:fixed;
+    font-size:26px;
+    pointer-events:none;
+    opacity:0;
+    animation: floatUp 2.2s ease-out forwards;
+    z-index:9999;
+  }
+
+  @keyframes floatUp{
+    0%{
+      transform:translateY(0) scale(1);
+      opacity:1;
+    }
+    60%{
+      transform:translateY(-90px) scale(1.5);
+      opacity:0.9;
+    }
+    100%{
+      transform:translateY(-140px) scale(1.7);
+      opacity:0;
+    }
+  }
+</style>
+
+</head>
+<body>
+  <div class="container">
+  <h1>For You Birthday Girl NurNisa Nasuha ❤️</h1>
+
+  <div class="content-box">
+
+    <div class="text-box">
+      <p id="customText">
+        Happy Birthday Strong Girl Nisayang ❤️<br>
+        Selamat menua sayang, semoga awak diberi kesihatan berpanjangan, 
+        rezeki yang melimpah, dan hari-hari yang penuh senyuman.💕<br><br>
+
+        Semoga segala yang awak doa, satu-satu Allah makbulkan dengan cara yang paling indah.💗<br>
+        Semoga bertambah usia ini bawa lebih banyak ketenangan, kebahagiaan, 
+        dan hati sentiasa tenang.✨<br><br>
+
+        Terima kasih sebab selalu kuat, dan selalu jadi diri awak yang cantik tu.💕<br>
+        Awak orang yang kuat, baik, dan berharga — jangan pernah lupa tu.❤️<br><br>
+
+        Awak layak untuk semua yang baik dalam hidup ini. 🤍<br><br>
+
+        I LOVE YOU SO MUCH 🤍
+      </p>
+    </div>
+
+    <div id="slideshow">
+      <img src="photo1.jpg" class="active">
+      <img src="photo2.jpg">
+      <img src="photo3.jpg">
+      <img src="photo4.jpg">
+      <img src="photo5.jpg">
+      <img src="photo6.jpg">
+      <img src="photo7.jpg">
+    </div>
+
+  </div>
+</div>
+
+
+  <script>
+    // slideshow
+    const slides = document.querySelectorAll('#slideshow img');
+    let index = 0;
+    setInterval(()=>{
+      slides[index].classList.remove('active');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+    }, 3500);
+
+    // floating love emojis
+    const emojis = ["❤️","💖","💘","💕","💗","💞"]; 
+    function spawnEmoji(x,y){
+      const e = document.createElement('div');
+      e.className = 'emoji';
+      e.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      e.style.left = x + 'px';
+      e.style.top = y + 'px';
+      document.body.appendChild(e);
+      setTimeout(()=>e.remove(),2000);
+    }
+
+    // spawn on click
+    window.addEventListener('click', (ev)=>{
+      for(let i=0;i<3;i++){
+        setTimeout(()=>{
+          spawnEmoji(ev.clientX + (Math.random()*40-20), ev.clientY + (Math.random()*40-20));
+        }, i*120);
+      }
+    });
+  </script>
+</body>
+</html>
